@@ -12,10 +12,11 @@ public class UserInterface {
     }
 
     public int addressBook() {
-        System.out.println("1] ADD CONTACT \n2] EDIT CONTACT\n3] HISTORY\n4]EXIT");
+        System.out.println("1] ADD CONTACT \n2] EDIT CONTACT \n3] DELETE CONTACT\n4] HISTORY\n5]EXIT");
         int choice = scan.nextInt();
         return choice;
     }
+
     void printAddressBook(ArrayList<Contact> contacts) {
         System.out.println("\n::--------- ADDRESS BOOK -----------::");
         for (int i = 0; i < contacts.size(); i++) {

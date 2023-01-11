@@ -68,4 +68,15 @@ public class Contact {
                 System.out.println("WRONG CHOICE ..THANK YOU");
         }
     }
+
+    public void deleteInformation(String name) {
+        for (int i = 0; i < contacts.size(); i++) {
+            if (name.equals(contacts.get(i).firstName)) {
+                System.out.println("DELETED ALL INFORMATION " + contacts.get(i).firstName + " " + contacts.get(i).lastName);
+                contacts.remove(i);
+                break;
+            }
+        }
+        System.out.println("Name Does Not Exist");
+    }
 }
