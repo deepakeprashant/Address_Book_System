@@ -69,7 +69,7 @@ public class Contact {
         }
     }
 
-    public void deleteInformation(String name) {
+      public void deleteInformation(String name) {
         for (int i = 0; i < contacts.size(); i++) {
             if (name.equals(contacts.get(i).firstName)) {
                 System.out.println("DELETED ALL INFORMATION " + contacts.get(i).firstName + " " + contacts.get(i).lastName);
