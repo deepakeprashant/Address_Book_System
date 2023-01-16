@@ -1,29 +1,39 @@
 package addressbook;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserInterface {
     Scanner scan = new Scanner(System.in);
+    String addressBookName;
+    public String addAddressBook(){
+        System.out.println("Enter Address Book Name");
+        addressBookName = scan.next();
+        return addressBookName;
+    }
 
+    public String checkAddressBook(HashMap<String , ArrayList<Contact>> map){
+        System.out.println("Enter Address Book Name");
+        addressBookName = scan.next();
+        if (map.containsKey(addressBookName)) {
+            return null;
+        }
+        return addressBookName;
+    }
+    public String choiceAddressBook(Map<String, ArrayList<Contact>> map) {
+        Set<String> setKey = map.keySet();
+        System.out.println(setKey);
+        System.out.println("Enter Address Book name");
+        String name = scan.next();
+        return name;
+    }
     public String searchContact() {
         System.out.println("ENTER PERSON NAME");
         return scan.next();
     }
 
-    public int addressBook() {
-        System.out.println("1] ADD CONTACT \n2] EDIT CONTACT \n3] DELETE CONTACT\n4] HISTORY\n5]EXIT");
+    public int showAddressBook() {
+        System.out.println("1] ADD NEW ADDRESS BOOK\n2] ADD CONTACT\n3] EDIT CONTACT\n4] DELETE CONTACT\n5] HISTORY\n6]EXIT");
         int choice = scan.nextInt();
         return choice;
-    }
-
-    void printAddressBook(ArrayList<Contact> contacts) {
-        System.out.println("\n::--------- ADDRESS BOOK -----------::");
-        for (int i = 0; i < contacts.size(); i++) {
-            System.out.println("PERSON NAME = " + contacts.get(i).firstName + " " + contacts.get(i).lastName);
-            System.out.println("PERSON ADDRESS = " + contacts.get(i).address + " " + contacts.get(i).city + " " + contacts.get(i).state + " " + contacts.get(i).zip);
-            System.out.println("PERSON PHONE NUMBER = " + contacts.get(i).phoneNumber + "\nEMAIL ID = " + contacts.get(i).emailId);
-            System.out.println("\n!--------------------------------------------------------------------!");
-        }
     }
 }
