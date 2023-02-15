@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbook.collection;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Repository {
 
@@ -83,6 +84,14 @@ public class Repository {
                                 + "\t " + n.getPhoneNumber()
                                 + "\t" + n.getCity() + " " + n.getState()
                                 + "\n")));
+
+        List<Map.Entry<String,List<Contacts>>> countCity;
+        countCity = map.entrySet()
+                .stream()
+                .filter(n->n.getValue().get(0).getCity().equals(location)
+                        || n.getValue().get(0).getState().equals(location))
+                .collect(Collectors.toList());
+        System.out.println("Total Same City Or State Belong Person :- "+countCity);
     }
 
     private void editContactInformation(Contacts editContactObject) {
