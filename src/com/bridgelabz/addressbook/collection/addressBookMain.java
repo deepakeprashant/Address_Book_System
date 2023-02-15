@@ -9,8 +9,9 @@ public class addressBookMain {
     public static final int ADD_CONTACT = 2;
     public static final int EDIT_CONTACT = 3;
     public static final int DELETE_CONTACT = 4;
-    public static final int DISPLAY = 5;
-    public static final int EXIT = 6;
+    public static final int SEARCH = 5;
+    public static final int DISPLAY = 6;
+    public static final int EXIT = 7;
     public static Repository repository = new Repository();
     public static Scanner scan = new Scanner(System.in);
 
@@ -46,6 +47,9 @@ public class addressBookMain {
                         break;
                     case DELETE_CONTACT:
                         repository.deleteInformation();
+                        break;
+                    case SEARCH:
+                        repository.searchPersonBelongCityOrState(addressBook.getLocation());
                         break;
                     case DISPLAY:
                         addressBook.showAddressBook(map);

@@ -18,18 +18,16 @@ public class Repository {
 
     void addAddressBook(String addressBookName, Contacts newPerson) {
         if (map.containsKey(addressBookName)) {
-            int count = 0;
             contacts = map.get(addressBookName);
-            for (int i = 0; i < contacts.size(); i++) {
-                if (newPerson.firstName.equals(contacts.get(i).firstName)) {
-                    count++;
-                }
-            }
-            if (count == 0) {
+            long duplicate = contacts.stream()
+                    .map(contacts1 -> contacts1.getFirstName())
+                    .filter(n -> n.equals(newPerson.firstName))
+                    .count();
+            if (duplicate == 0) {
                 contacts.add(newPerson);
                 map.put(addressBookName, contacts);
             } else {
-                System.out.println(newPerson.firstName + " Person Contact already present");
+                System.out.println("Person name already exits");
             }
         } else {
             List<Contacts> newContact = new ArrayList<>();
@@ -56,7 +54,9 @@ public class Repository {
         String name = scan.next();
         for (int i = 0; i < contacts.size(); i++) {
             if (name.equals(contacts.get(i).firstName)) {
-                System.out.println("DELETED ALL INFORMATION " + contacts.get(i).firstName + " " + contacts.get(i).lastName);
+                System.out.println("DELETED ALL INFORMATION "
+                        + contacts.get(i).firstName + " "
+                        + contacts.get(i).lastName);
                 contacts.remove(i);
                 break;
             }
@@ -64,8 +64,23 @@ public class Repository {
         System.out.println("Name Does Not Exist");
     }
 
+    public void searchPersonBelongCityOrState(String location) {
+        System.out.println(":: Person Name\tMobile Number\tSame City Or State ::");
+        map.entrySet()
+                .forEach(contact -> contact.getValue()
+                        .stream()
+                        .filter(n -> n.city.contains(location)
+                                || n.state.contains(location))
+                        .forEach(n -> System.out.println(" " + n.getFirstName()
+                                + " " + n.getLastName()
+                                + "\t " + n.getPhoneNumber()
+                                + "\t" + n.getCity() + " " + n.getState()
+                                + "\n")));
+    }
+
     private void editContactInformation(int index) {
-        System.out.println("\tWHICH DATA EDIT \n\t1] FULL NAME \n\t2] ADDRESS \n\t3] PHONE NUMBER");
+        System.out.println("\tWHICH DATA EDIT \n\t1] FULL NAME \n\t2] ADDRESS " +
+                "\n\t3] PHONE NUMBER");
         int choice = scan.nextInt();
         switch (choice) {
             case NAME:

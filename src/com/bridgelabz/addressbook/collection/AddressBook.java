@@ -12,7 +12,8 @@ public class AddressBook {
     int showChoiceBoard() {
         System.out.println("Enter 1] New Address Book\nEnter 2] New Add Contact Person\n" +
                 "Enter 3] Edit Contact \nEnter 4] Delete Contact\n" +
-                "Enter 5] Display AddressBookEnter\nEnter 6] Exit Address Book");
+                "Enter 5] Search Belong City / State\n"+
+                "Enter 6] Display AddressBookEnter\nEnter 7] Exit Address Book");
         return scan.nextInt();
     }
 
@@ -47,5 +48,9 @@ public class AddressBook {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
     }
-
+    public String getLocation() {
+        System.out.println("Enter city or state name");
+        String location = scan.next();
+        return location;
+    }
 }
