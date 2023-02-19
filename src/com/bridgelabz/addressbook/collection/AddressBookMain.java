@@ -4,20 +4,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class addressBookMain {
+public class AddressBookMain {
     public static final int NEW_ADDRESSBOOK = 1;
     public static final int ADD_CONTACT = 2;
     public static final int EDIT_CONTACT = 3;
     public static final int DELETE_CONTACT = 4;
     public static final int SEARCH = 5;
-    public static final int DISPLAY = 6;
-    public static final int EXIT = 7;
+    public static final int SORTING = 6;
+    public static final int DISPLAY = 7;
+    public static final int EXIT = 8;
     public static Repository repository = new Repository();
     public static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.println(":: Wel-Come Address Book ::");
-        addressBookMain main = new addressBookMain();
+        AddressBookMain main = new AddressBookMain();
         AddressBook addressBook = new AddressBook();
         Map<String, List<Contacts>> map = repository.getReturnAddressBook();
         while (true) {
@@ -50,6 +51,9 @@ public class addressBookMain {
                         break;
                     case SEARCH:
                         repository.searchPersonBelongCityOrState(addressBook.getLocation());
+                        break;
+                    case SORTING:
+                        repository.sortedName();
                         break;
                     case DISPLAY:
                         addressBook.showAddressBook(map);

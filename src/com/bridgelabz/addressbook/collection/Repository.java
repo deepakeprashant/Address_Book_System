@@ -85,13 +85,13 @@ public class Repository {
                                 + "\t" + n.getCity() + " " + n.getState()
                                 + "\n")));
 
-        List<Map.Entry<String,List<Contacts>>> countCity;
+        List<Map.Entry<String, List<Contacts>>> countCity;
         countCity = map.entrySet()
                 .stream()
-                .filter(n->n.getValue().get(0).getCity().equals(location)
+                .filter(n -> n.getValue().get(0).getCity().equals(location)
                         || n.getValue().get(0).getState().equals(location))
                 .collect(Collectors.toList());
-        System.out.println("Total Same City Or State Belong Person :- "+countCity);
+        System.out.println("Total Same City Or State Belong Person :- " + countCity.stream().count());
     }
 
     private void editContactInformation(Contacts editContactObject) {
@@ -117,5 +117,19 @@ public class Repository {
             default:
                 System.out.println("WRONG CHOICE ..THANK YOU");
         }
+    }
+
+    public void sortedName() {
+        String bookName = addressBook.getAddressBookName();
+        List<Contacts> contactsList = map.get(bookName);
+        contactsList
+                .stream()
+                .sorted(Comparator.comparing(Contacts::getFirstName))
+                .forEach(i -> System.out.println("PERSON NAME :: "
+                        + i.getFirstName() + " " + i.getLastName()
+                        + "\t " + i.getPhoneNumber()
+                        + "\t" + i.getCity()
+                        + " " + i.getState()
+                        + "\n"));
     }
 }

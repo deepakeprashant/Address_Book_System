@@ -12,8 +12,8 @@ public class AddressBook {
     int showChoiceBoard() {
         System.out.println("Enter 1] New Address Book\nEnter 2] New Add Contact Person\n" +
                 "Enter 3] Edit Contact \nEnter 4] Delete Contact\n" +
-                "Enter 5] Search Belong City / State\n"+
-                "Enter 6] Display AddressBookEnter\nEnter 7] Exit Address Book");
+                "Enter 5] Search Belong City / State\nEnter 6] Sorting \n"+
+                "Enter 7] Display AddressBookEnter\nEnter 8] Exit Address Book");
         return scan.nextInt();
     }
 
